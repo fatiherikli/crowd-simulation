@@ -77,7 +77,7 @@ Agent.prototype.findMovableDirection = function () {
     }
   );
 
-  var uniqueDirections = chain.filter(function (value, index, self) { 
+  var uniqueDirections = chain.filter(function (value, index, self) {
     return self.indexOf(value) === index;
   });
 
@@ -103,7 +103,7 @@ Agent.prototype.findMovableDirection = function () {
 }
 
 Agent.prototype.weightedRandom = function (spec) {
-  var sum = 0, 
+  var sum = 0,
       random = Math.random();
 
   for (var i in spec) {
