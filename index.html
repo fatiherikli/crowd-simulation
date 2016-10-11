@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kalaba</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>Crowd simulation on Istanbul Streets</h1>
+  <h2>Each agent walks randomly on the streets until getting tired and turns back.</h2>
+  <ul>
+    <li><a href="#taksim">#Taksim</a></li>
+    <li><a href="#kadikoy">#Kadıköy</a></li>
+    <li><a href="#sisli">#Şişli</a></li>
+    <li><a href="#">Source code</a></li>
+  </ul>
+</header>
+<div class="examples">
+  <div class="example" id="taksim">
+    <h3>Taksim - Istanbul, Turkey</h3>
+    <canvas width="1600" height="1200"></canvas>
+    <div class="controller">
+      <span>Based on Openstreetmap data.<br /></span>
+      <a href="#">Raw Map</a>
+      <form></form>
+    </div>
+  </div>
+
+  <div class="example" id="kadikoy">
+    <h3>Kadıköy - Istanbul, Turkey</h3>
+    <canvas width="1600" height="1200"></canvas>
+    <div class="controller">
+      <span>Based on Openstreetmap data.<br /></span>
+      <a href="#">Raw Map</a>
+      <form></form>
+    </div>
+  </div>
+
+  <div class="example" id="sisli">
+    <h3>Şişli - Istanbul, Turkey</h3>
+    <canvas width="1600" height="1200"></canvas>
+    <div class="controller">
+      <span>Based on Openstreetmap data.<br /></span>
+      <a href="#">Raw Map</a>
+      <form></form>
+    </div>
+  </div>
+</div>
+<footer>
+  MIT Licensed, 2016. <br> <a href="http://fatiherikli.com">Fatih Erikli</a>
+</footer>
+<script type="text/template" id="controller-template">
+  <label>Agents per 10 iterations</label>
+  <input type="range" class="agents" min="0" max="100" value="10" />
+  <span class="agent-count">10</span>
+  <div class="buttons">
+    <button class="run">Run</button>
+    <button class="reset" disabled>Reset</button>
+  </div>
+</script>
+<script src="js/constants.js"></script>
+<script src="js/Simulation.js"></script>
+<script src="js/Model.js"></script>
+<script src="js/Agent.js"></script>
+<script src="js/TextMap.js"></script>
+<script src="js/Controller.js"></script>
+<script>
+  fetch('maps/istiklal.txt').then(function (response) {
+    return response.text();
+  }).then(function (mapData) {
+    (new Simulation(
+      document.querySelector('#taksim canvas'),
+      400,
+      300,
+      mapData,
+      document.querySelector('#taksim form')
+    )).render();
+  });
+
+  fetch('maps/kadikoy.txt').then(function (response) {
+    return response.text();
+  }).then(function (mapData) {
+    (new Simulation(
+      document.querySelector('#kadikoy canvas'),
+      400,
+      300,
+      mapData,
+      document.querySelector('#kadikoy form')
+    )).render();
+  });
+
+  fetch('maps/sisli.txt').then(function (response) {
+    return response.text();
+  }).then(function (mapData) {
+    (new Simulation(
+      document.querySelector('#sisli canvas'),
+      400,
+      300,
+      mapData,
+      document.querySelector('#sisli form')
+    )).render();
+  });
+</script>
+</body>
+</html>
